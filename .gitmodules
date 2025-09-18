@@ -1,6 +1,21 @@
-[submodule "CS100/CS100/lab-1-setting-up-your-environment-sshen070"]
-	path = CS100/CS100/lab-1-setting-up-your-environment-sshen070
-	url = https://github.com/cs100/lab-1-setting-up-your-environment-sshen070.git
 [submodule "CS100/lab-1-setting-up-your-environment-sshen070"]
 	path = CS100/lab-1-setting-up-your-environment-sshen070
 	url = https://github.com/cs100/lab-1-setting-up-your-environment-sshen070.git
+[submodule "CS100/lab-2-github-flow-group-2"]
+	path = CS100/lab-2-github-flow-group-2
+	url = https://github.com/cs100/lab-2-github-flow-group-2.git
+[submodule "CS100/lab-3-debugging-with-gdb-and-valgrind-bng024_sshen070"]
+	path = CS100/lab-3-debugging-with-gdb-and-valgrind-bng024_sshen070
+	url = https://github.com/cs100/lab-3-debugging-with-gdb-and-valgrind-bng024_sshen070.git
+[submodule "CS100/lab-4-unit-testing-bng024_sshen070_lab4"]
+	path = CS100/lab-4-unit-testing-bng024_sshen070_lab4
+	url = https://github.com/cs100/lab-4-unit-testing-bng024_sshen070_lab4.git
+[submodule "CS100/lab-5-github-actions-bng024_sshen070_lab5"]
+	path = CS100/lab-5-github-actions-bng024_sshen070_lab5
+	url = https://github.com/cs100/lab-5-github-actions-bng024_sshen070_lab5.git
+[submodule "CS100/lab-6-code-coverage-bng024_sshen070"]
+	path = CS100/lab-6-code-coverage-bng024_sshen070
+	url = https://github.com/cs100/lab-6-code-coverage-bng024_sshen070_lab6.git
+[submodule "CS100/final-project-cs100"]
+	path = CS100/final-project-cs100
+	url = https://github.com/cs100/final-project-cs100projectgroup3-lab023.git
