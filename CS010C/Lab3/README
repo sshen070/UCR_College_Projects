@@ -1,0 +1,29 @@
+The skeleton of main I provide has a little bit more structure than
+the one that is in the Zybooks.
+
+The createVector function is done, but you have to write min_index,
+selection_sort, and getElement.
+
+These are supposed to be "templated" functions, but I didn't write
+in the template syntax (it is straight forward, but the program
+won't work until you put it in place).
+
+When your code is graded, your main will not run.  The unit tests
+will simply exercise the three functions you wrote to see if they
+work.
+
+Right now, the main has some tests that make a random vector and
+tries out getElement.  If you want to try a few things, just
+make a.out and run
+
+% ./a.out < test.txt
+
+The main (as written) does not do anything with selection sort,
+so you will have to add your own tests to main to make that work.
+
+For selection sort, remember the way it works... you start with
+an array of size n (so indices 0 through n-1).  We pick the
+smallest value in the range 0:n-1 (with min_index) and SWAP that
+into position 0.  Then we pick the smallest value in range 1:n-1
+and swap that into position 1 and so on.
+

@@ -1,0 +1,142 @@
+This lab is deceptively long.  The only really hard function is the change position function.
+The tests are also very picky about blanks and empty lines.  After you get this mostly working;
+remember that it will take some time to get the spaces exactly right.
+
+A lot of our labs look like this.  We have a menu of actions that will test a type.  This is
+what Zybooks and Gradescope run to exercise your code.
+
+The program starts by prompting for and creating a Playlist object.  That object will take
+care of all the work AND it will need to clean up any allocated memory when it gets destroyed
+at the end of the program.
+
+I already wrote the 'q' action (which almost lets this pass test 1).  Please note that 'cin >> command'
+action is guarded.  If it fails for whatever reason (here, typically end of file), the loop will
+stop and the program will terminate cleanly.
+
+FIRST THINGS FIRST
+
+You have to finish building out the PlaylistNode class in Playlist.h (implementations in Playlist.cpp)
+The lab says you a bunch methods and data members. Please add them to the class.  I've put in
+the default constructor (but not its complete implementation).  Remember to default the nextNodePtr
+to nullptr!!!
+
+Default constructor (1 pt)
+Parameterized constructor (1 pt)
+
+Public member functions
+InsertAfter() (1 pt)
+SetNext() - Mutator (1 pt)
+GetID() - Accessor
+GetSongName() - Accessor
+GetArtistName() - Accessor
+GetSongLength() - Accessor
+GetNext() - Accessor
+PrintPlaylistNode()
+
+Private data members
+string uniqueID - Initialized to "none" in default constructor
+string songName - Initialized to "none" in default constructor
+string artistName - Initialized to "none" in default constructor
+int songLength - Initialized to 0 in default constructor
+PlaylistNode* nextNodePtr - Initialized to 0 in default constructor
+
+
+PRINTING STUFF OUT
+
+Then you should write a function to output the menu.  For a playlist
+with a title of JAMZ, it will look like:
+
+JAMZ PLAYLIST MENU
+a - Add song
+d - Remove song
+c - Change position of song
+s - Output songs by specific artist
+t - Output total time of playlist (in seconds)
+o - Output full playlist
+q - Quit
+
+Choose an option:
+
+You can do this with simple 'cout' commands.
+
+OUTPUT HAS TO WORK FOR EMPTY PLAYLISTS AND THOSE WITH SONGS IN THEM
+
+I suggest you start with the 'o' function to output a playlist.  The notes for the
+lab tell you what to do when the playlist is empty (when head is a nullptr).  You
+should cout a line that says
+
+Playlist is empty
+
+Otherwise, we traverse from the head until we hit the nullptr at the end and call
+each node's PrintPlaylistNode() method to do the output work.
+
+ALL of these simple full traversals look like this
+
+for(const PlaylistNode* curr = head; curr != nullptr; curr = curr->GetNext()) {
+  ...
+}
+
+or maybe
+const PlaylistNode* curr = head;
+while (curr != nullptr) {
+  ...
+  curr = curr->GetNext();
+}
+
+Notice that I made the pointer 'const'   That is because, in this routine, I don't want
+to change anything.  The compiler will help me keep this promise.
+
+ADDING SONGS (appends)
+
+Mostly, we just allocate a new PlaylistNode
+
+PlaylistNode* node = new PlaylistNode(uniqueID, songName, artistName, songLength);
+
+and the link it after the tail
+
+tail->SetNext(node);
+
+We do have a special case, however, when the list is initially empty.  In this case, we
+have to set both the head and the tail to the node we just allocated
+
+head = node;
+tail = node;
+
+or more compactly
+
+head = tail = node;
+
+
+REMOVING SONGS
+
+For removing songs, we have to find it (which means searching for its unique ID).
+We then have to link around it (and delete it from the heap).   So we need to find
+the song's node AND we have to find the node right before it (expect when the node
+is the head, since there is no node before it).   We also have to be careful when
+we delete the very last song since we have to update tail.  Here's some code to
+get you started.  Since we will be changing nodes, we will NOT be using a const
+pointer.
+
+// Find the prev (node before) and curr (node that matches) a particular ID
+PlaylistNode* prev = nullptr;
+PlaylistNode* curr = head;
+while (curr != nullptr) {
+  if (curr->GetId() == uniqueID) break;
+  prev = curr;
+  curr = curr->GetNext();
+}
+
+// Normally at this point, prev points at some internal song, curr points to the song
+// we want to remove.  Say we are removing B out of A->B->C
+//     A      ->         B         ->          C
+//   ^prev           ^curr             ^curr->GetNext()
+//
+// We want A to point to C, so
+prev->SetNext(curr->GetNext());
+delete curr;
+
+// Some special cases to consider!
+0) The song isn't found (curr will be nullptr)
+1) When we want to delete the first song, prev is nullptr and curr is pointing the same place as head
+2) We delete the last song (which may also be the first song!).  We know this is true when curr
+   points the same place as tail.  So now, what is the real last song in the list?

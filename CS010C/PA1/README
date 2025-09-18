@@ -1,0 +1,5 @@
+The only parts you really have to do are completing the newNode
+function and then adding some code to remove the k'th node
+from a circular linked list.  Hint: The list will always have
+at least two items in it AND each node->next WILL point at
+a different node!
