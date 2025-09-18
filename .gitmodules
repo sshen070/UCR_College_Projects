@@ -1,3 +1,6 @@
 [submodule "CS100/CS100/lab-1-setting-up-your-environment-sshen070"]
 	path = CS100/CS100/lab-1-setting-up-your-environment-sshen070
 	url = https://github.com/cs100/lab-1-setting-up-your-environment-sshen070.git
+[submodule "CS100/lab-1-setting-up-your-environment-sshen070"]
+	path = CS100/lab-1-setting-up-your-environment-sshen070
+	url = https://github.com/cs100/lab-1-setting-up-your-environment-sshen070.git
